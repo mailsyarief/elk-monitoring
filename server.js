@@ -9,6 +9,26 @@ const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-ac
 
 const employeeController = require('./controllers/employeeController');
 
+let apm = require('elastic-apm-node').start({
+
+    // Override the service name from package.json
+    // Allowed characters: a-z, A-Z, 0-9, -, _, and space
+    serviceName: 'project',
+
+    // Use if APM Server requires a secret token
+    secretToken: '',
+
+    // Set the custom APM Server URL (default: http://localhost:8200)
+    serverUrl: 'http://docker.for.mac.host.internal:8200',
+
+    // Set the service environment
+    environment: 'production'
+})
+
+let err = new Error('Ups, something broke!')
+
+apm.captureError(err)
+
 var app = express();
 app.use(bodyparser.urlencoded({
     extended: true

@@ -1,6 +1,7 @@
 node_modules/
 metricbeat/
 filebeat/
+apm-server/
 nohup.out
 __MACOSX
 .DS_Store
