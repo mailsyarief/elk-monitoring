@@ -2,9 +2,6 @@ version: '2.2'
 services:
   mongo:
     image: mongo
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
     ports:
       - 27017:27017
 
@@ -23,7 +20,7 @@ services:
     environment:
       - NODE_ENV=production
     volumes:
-      - ./app:/home/node/app
+      - ./:/home/node/app
     ports:
       - '3000:3000'
     command: 'npm start'
