@@ -8,7 +8,3 @@ npm update
 npm install
 
 docker-compose up --build -d
-
-cd metricbeat
-./metricbeat setup
-nohup ./metricbeat -e &

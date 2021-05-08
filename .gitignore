@@ -3,3 +3,4 @@ metricbeat/
 filebeat/
 nohup.out
 __MACOSX
+.DS_Store
