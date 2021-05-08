@@ -1,3 +1,5 @@
 node_modules/
 metricbeat/
 filebeat/
+nohup.out
+__MACOSX
