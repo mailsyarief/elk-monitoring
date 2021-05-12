@@ -1,6 +1,7 @@
 pkill metricbeat
 pkill filebeat
 pkill apm-server
+pkill nohup
 
 unzip -o metricbeat.zip
 unzip -o filebeat.zip
