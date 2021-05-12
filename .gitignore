@@ -3,5 +3,6 @@ metricbeat/
 filebeat/
 apm-server/
 nohup.out
+log/
 __MACOSX
 .DS_Store
