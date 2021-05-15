@@ -3,7 +3,7 @@ services:
   mongodb1:
     image: mongo:latest
     volumes:
-      - data-01:/data/db
+      - data-02:/data/db
       - config-01:/data/configdb
       - ./log/mongodb:/log 
     ports:
@@ -92,7 +92,10 @@ services:
 volumes:
   data-01:
     driver: local
+  data-02:
+    driver: local
   config-01:
+    driver: local
 
 networks:
   elastic:
