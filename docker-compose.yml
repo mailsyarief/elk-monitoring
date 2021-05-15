@@ -11,8 +11,6 @@ services:
     command:
       - '--logpath'
       - './log/mongodb.log'
-      - '--profile=1'
-      - '--slowms=1'
     entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0" ]
     
   mongodb2:
