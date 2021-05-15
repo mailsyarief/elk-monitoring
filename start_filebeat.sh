@@ -1,4 +1,4 @@
 pkill filebeat
 cd filebeat
-./filebeat setup
+# ./filebeat setup
 nohup ./filebeat -e &

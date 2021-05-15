@@ -1,4 +1,4 @@
 pkill metricbeat
 cd metricbeat
-./metricbeat setup
+# ./metricbeat setup
 nohup ./metricbeat -e &

@@ -1,14 +1,42 @@
 version: '2.2'
 services:
-  mongo:
-    image: mongo
+  mongodb1:
+    image: mongo:latest
+    volumes:
+      - data-01:/data/db
+      - config-01:/data/configdb
+      - ./log/mongodb:/log 
     ports:
       - 27017:27017
     command:
       - '--logpath'
-      - './log/mongodb.log'      
+      - './log/mongodb.log'
+      - '--profile=1'
+      - '--slowms=1'
+    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0" ]
+    
+  mongodb2:
+    image: mongo:latest
+    ports:
+      - 27018:27017
+    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0" ]
+    
+  mongodb3:
+    image: mongo:latest
+    ports:
+      - 27019:27017
+    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0" ]
+    
+  mongoclient:
+    image: mongo
+    depends_on:
+      - mongodb1
+      - mongodb2
+      - mongodb3
     volumes:
-      - ./log/mongodb:/log 
+      - ./initiate_replica.sh:/deployment_scripts/initiate_replica.sh
+    entrypoint:
+      - /deployment_scripts/initiate_replica.sh
 
   nginx:
     image: nginx:latest
@@ -27,8 +55,6 @@ services:
       - NODE_ENV=production
     volumes:
       - ./:/home/node/app
-    ports:
-      - '3000:3000'
     command: 'npm start'
 
   es-01:
@@ -66,6 +92,7 @@ services:
 volumes:
   data-01:
     driver: local
+  config-01:
 
 networks:
   elastic:
