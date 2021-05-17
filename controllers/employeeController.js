@@ -3,6 +3,15 @@ var router = express.Router();
 const mongoose = require('mongoose');
 const Employee = mongoose.model('Employee');
 
+
+router.get('/latency', async (req, res) => {
+    console.log("Latency")
+    await new Promise(resolve => setTimeout(resolve, 5000));
+    res.render("employee/addOrEdit", {
+        viewTitle: "Insert Employee"
+    });
+});
+
 router.get('/', (req, res) => {
     res.render("employee/addOrEdit", {
         viewTitle: "Insert Employee"
