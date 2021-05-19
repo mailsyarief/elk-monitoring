@@ -1,6 +1,7 @@
 require('./models/db');
 
 const express = require('express');
+var router = express.Router();
 const path = require('path');
 const exphbs = require('express-handlebars');
 const bodyparser = require('body-parser');
@@ -8,6 +9,7 @@ const Handlebars = require('handlebars')
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
 
 const employeeController = require('./controllers/employeeController');
+const newController = require('./controllers/newController');
 
 let apm = require('elastic-apm-node').start({
 
@@ -48,3 +50,4 @@ app.listen(3000, () => {
 });
 
 app.use('/employee', employeeController);
+app.use('/', newController)
