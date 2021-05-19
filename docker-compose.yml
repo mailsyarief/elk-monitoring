@@ -15,6 +15,7 @@ services:
     volumes:
       - ./log/nginx:/var/log/nginx
       - ./nginx/node.conf:/etc/nginx/conf.d/node.template
+      - ./nginx/nginx:/etc/init.d/nginx
     ports:
       - '8080:80'
     command: 'bash -c "cat /etc/nginx/conf.d/node.template > /etc/nginx/conf.d/default.conf && nginx -g ''daemon off;''"'
