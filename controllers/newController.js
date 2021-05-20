@@ -24,7 +24,7 @@ router.post('/newEmployee', (req, res) => {
 })
 
 router.delete('/deleteEmployee', (req, res) => {
-    Employee.deleteOne({fullName: "b"}, (err) => {
+    Employee.deleteOne({fullName: "test data"}, (err) => {
         if(!err) res
         .status(200)
         .send("success")
